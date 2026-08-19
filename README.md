@@ -129,6 +129,21 @@ npm run typecheck  # 仅类型检查
 14. 选**日文**文本(Auto Detect→Chinese)→ 应出中文机翻(嗅探顺序回归项);韩文同理
 15. (可选)DevTools 改书签容器文本 → 刷新 → 标「已失效」,笔记保留
 
+## 常见问题
+
+**`npm run build` 报 `'tsc' 不是内部或外部命令`**
+
+构建用的 `tsc`/`vite` 是项目本地依赖(装在 `node_modules/.bin/`),不是全局命令。先在项目目录安装依赖再构建:
+
+```bash
+npm install
+npm run build
+```
+
+**刷新后高亮/侧边栏书签全没了**
+
+九成是扩展被「删除后重新加载」过——删除会清空全部本地存储。重载永远用扩展卡片上的 ↻ 图标,并检查页面 Console 的 `[Wordmark] rebuildAll` 日志(N=0 说明 storage 是空的,详见下文「调试」)。
+
 ## 调试
 
 刷新页面后,页面 DevTools → Console 应看到:
