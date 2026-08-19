@@ -1,0 +1,34 @@
+{
+  "name": "wordmark",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Select text to bookmark with translation. Highlight, dictionary, and machine translation in a side-panel notebook.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.28",
+    "@types/chrome": "^0.0.270",
+    "@types/node": "^26.2.0",
+    "@types/picomatch": "^4.0.3",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "jsdom": "^30.0.1",
+    "type-fest": "^5.8.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true
+  }
+}

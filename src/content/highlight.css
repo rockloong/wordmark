@@ -1,0 +1,2 @@
+/* 高亮样式占位(M5/高亮引擎会动态注入每书签一条 ::highlight(name) 规则) */
+/* CSS Custom Highlight API:通过 CSS.highlights 注册的 Range 着色,不碰 DOM。*/

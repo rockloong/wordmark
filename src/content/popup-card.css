@@ -1,0 +1,171 @@
+/* 弹出卡片样式(注入 Shadow DOM,与宿主页隔离) */
+
+:host {
+  all: initial;
+}
+
+/* position:absolute:卡片贴在单词的文档坐标上,天然随页面滚动一起滑出窗口。
+   JS 给的 left/top 已是文档坐标(rect+scrollX/Y);绝不能用 fixed(会相对视口,
+   把文档坐标当成视口坐标,导致卡片飞到屏幕外)。 */
+.card {
+  position: absolute;
+  z-index: 2147483647;
+  width: 320px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  animation: wm-pop 0.12s ease-out;
+}
+
+@keyframes wm-pop {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.card__word {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card__phonetic {
+  font-size: 12px;
+  opacity: 0.65;
+  font-style: italic;
+}
+
+.card__audio {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 2px;
+  opacity: 0.7;
+}
+.card__audio:hover { opacity: 1; }
+
+.card__translation {
+  font-size: 14px;
+  font-weight: 500;
+  background: rgba(245, 166, 35, 0.12);
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.card__pending {
+  font-size: 12px;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.card__meaning {
+  margin: 8px 0;
+}
+
+.card__pos {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #f5a623;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.card__def {
+  margin: 4px 0 4px 10px;
+}
+
+.card__def-text {
+  display: inline;
+}
+
+.card__example {
+  font-size: 12px;
+  opacity: 0.6;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 11px;
+}
+
+.card__provider {
+  opacity: 0.5;
+}
+
+.card__toggle {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: transparent;
+  color: inherit;
+  border-radius: 6px;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.card__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.4;
+  line-height: 1;
+}
+.card__close:hover { opacity: 1; }
+
+.card__delete {
+  position: absolute;
+  top: 8px;
+  right: 32px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.4;
+  line-height: 1;
+}
+.card__delete:hover {
+  opacity: 1;
+  filter: grayscale(1) brightness(1.6) sepia(1) hue-rotate(-30deg) saturate(4);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: #2a2a2e;
+    color: #e8e8ea;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .card__footer {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+  .card__toggle {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
